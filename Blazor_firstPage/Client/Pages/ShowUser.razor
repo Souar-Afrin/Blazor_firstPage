@@ -1,0 +1,47 @@
+﻿@page "/showUser"
+@using Blazor_firstPage.Server;
+@using Blazor_firstPage.Server.Model;
+@using Blazor_firstPage.Shared.Service.UserService;
+@inject HttpClient Http
+
+@code {
+    private List<User>? users;
+    //public UserService userService { get; set; }
+    public ShowUser(UserService userService)
+    {
+        users = userService.GetUsers(); 
+    }
+}
+
+
+<h3>ShowUser </h3>
+@if (users == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name </th>
+                <th>Email </th>
+             
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in users)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                 
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
