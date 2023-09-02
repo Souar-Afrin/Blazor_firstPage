@@ -1,4 +1,4 @@
-using Blazor_firstPage.Shared.Service.UserService;
+using Blazor_firstPage.Server.Service.UserService;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);

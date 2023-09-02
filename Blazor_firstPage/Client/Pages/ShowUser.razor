@@ -1,18 +1,6 @@
-﻿@page "/showUser"
-@using Blazor_firstPage.Server;
-@using Blazor_firstPage.Server.Model;
-@using Blazor_firstPage.Shared.Service.UserService;
+﻿@page "/showuser"
+@using Blazor_firstPage.Shared
 @inject HttpClient Http
-
-@code {
-    private List<User>? users;
-    //public UserService userService { get; set; }
-    public ShowUser(UserService userService)
-    {
-        users = userService.GetUsers(); 
-    }
-}
-
 
 <h3>ShowUser </h3>
 @if (users == null)
@@ -45,3 +33,10 @@ else
 }
 
 
+@code {
+    private List<User>? users;
+    protected override async Task OnInitializedAsync()
+    {
+        users = await Http.GetFromJsonAsync<List<User>>("UserService");
+    }
+}

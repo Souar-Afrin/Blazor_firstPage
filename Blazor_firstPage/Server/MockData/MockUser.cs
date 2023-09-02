@@ -6,9 +6,9 @@ namespace Blazor_firstPage.Server.MockData
     {
         private static List<User> users = new List<User>
         {
-             new User(1, "John", ""),
-             new User(2, "Mary", ""),
-             new User(3, "Mike", "")
+             new User(1, "John", "test1@"),
+             new User(2, "Mary", "test2@"),
+             new User(3, "Mike", "test3@")
         };
         public static List<User> GetMockUser()
         {
