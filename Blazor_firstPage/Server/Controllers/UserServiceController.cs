@@ -1,4 +1,4 @@
-﻿using Blazor_firstPage.Server.Model;
+﻿using Blazor_firstPage.Shared;
 using Blazor_firstPage.Server.Service.UserService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,13 +18,31 @@ namespace Blazor_firstPage.Server.Controllers
             this.UserService = userService;
             this._logger = _logger;
         }
-   
+
         [HttpGet]
         public IActionResult OnGet()
         {
-            Users = UserService.GetUsers(); 
+            Users = UserService.GetUsers();
             return Ok(Users);
         }
-       
+
+        [HttpPost]
+        public IActionResult OnPost(User user)
+        {
+            if (user == null)
+            {
+                return BadRequest(
+                    new
+                    {
+                        message = "user is null"
+                    });
+            }
+            else
+            {
+                //Users.Add(user);
+                UserService.AddUser(user);
+                return Ok(user);
+            }
+        }
     }
 }

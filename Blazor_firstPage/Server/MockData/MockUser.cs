@@ -1,4 +1,4 @@
-﻿using Blazor_firstPage.Server.Model;
+﻿using Blazor_firstPage.Shared;
 
 namespace Blazor_firstPage.Server.MockData
 {
@@ -10,11 +10,10 @@ namespace Blazor_firstPage.Server.MockData
              new User(2, "Mary", "test2@"),
              new User(3, "Mike", "test3@")
         };
+
         public static List<User> GetMockUser()
         {
             return users;
         }
-
     };
 }
-
