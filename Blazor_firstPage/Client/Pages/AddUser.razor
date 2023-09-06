@@ -1,48 +1,64 @@
-﻿@page  "/CreateUser"
-@using Blazor_firstPage.Shared;
-@using System.Text.Json;
+﻿@page "/CreateUser"
+@using Blazor_firstPage.Shared
 @inject HttpClient Http
+<h3>Add User</h3>
 
-<title>Create User</title>
+<div>
+    <label for="id">Id:</label>
+    <input type="text" id="id" @bind="userId" />
+</div>
+<div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" @bind="userName" />
+</div>
+<div>
+    <label for="email">Email:</label>
+    <input type="text" id="email" @bind="userEmail" />
+</div>
+<div>
+    <button @onclick="AddUser1">Add User</button>
+</div>
 
-<form method="post">
-            <div>
-                <label for="Id">ID:</label>
-                <input type="text" id="Id" name="Id"  bind-value="@user.Id" />
-            </div>
-
-            <div>
-                <label for="FirstName">First Name:</label>
-                <input type="text" id="FirstName" name="Name"  bind-value="@user.Name" />
-            </div>
-
-            <div>
-                <label for="LastName">Last Name:</label>
-                <input type="text" @bind="user.Id" />
-            </div>
-    
-            <div>
-                <input type="submit"  value="Create User" class="btn btn-primary" />
-            </div>
-</form>
-
-<h1>user.Name</h1>
-
-
-
-
-@code {
-    //public User user { get; set; }
-    User user = new User();
-
-    protected override async Task OnInitializedAsync()
-    {
-        user = await Http.PostAsJsonAsync<User>("UserService",user);
-
-        //user = await Http.PostAsJsonAsync("Blazor_firstPage/userService", user);
-
-    }
-    
+@if (message != null)
+{
+    <p>@message</p>
 }
 
+@code {
+    private string userId;
+    private string userName;
+    private string userEmail;
+    private string message;
 
+    // Replace 'YourApiEndpoint' with the actual API endpoint
+    private string apiEndpoint = "YourApiEndpoint";
+
+    private async Task AddUser1()
+    {
+        User newUser = new User
+            {
+                Id = userId,
+                Name = userName,
+                Email = userEmail
+            };
+
+        var response = await Http.PostAsJsonAsync("userService", newUser);
+
+        if (response.IsSuccessStatusCode)
+        {
+            message = "User added successfully!";
+            // You can perform additional actions here, such as clearing the input fields or updating a user list.
+        }
+        else
+        {
+            message = "Failed to add user. Please try again.";
+        }
+    }
+
+    private class User
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+    }
+}
