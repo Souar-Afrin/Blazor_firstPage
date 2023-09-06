@@ -19,9 +19,52 @@
     <button @onclick="AddUser1">Add User</button>
 </div>
 
+<<<<<<< Updated upstream
 @if (message != null)
 {
     <p>@message</p>
+=======
+<form method="post">
+   
+        <div>
+            <label for="id">ID:</label>
+            <input asp-for="Id" class="form-control" id="id" />
+        </div>
+        <div>
+            <label for="name">Name:</label>
+            <input asp-for="Name" class="form-control" id="name" />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input asp-for="Email" class="form-control" id="email" />
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="addUser()">Create User</button>
+
+</form>
+
+<h1>user.Name</h1>
+
+
+
+
+@code {
+    //public User user { get; set; }
+    User user = new User();
+   
+    user.Id= getElementById("id").value;
+    user.Name = getElementById("name").value;
+    user.Email = getElementById("email").value;
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await Http.PostAsJsonAsync<User>("UserService",user);
+
+        //user = await Http.PostAsJsonAsync("Blazor_firstPage/userService", user);
+
+    }
+    
+>>>>>>> Stashed changes
 }
 
 @code {
@@ -30,6 +73,7 @@
     private string userEmail;
     private string message;
 
+<<<<<<< Updated upstream
     // Replace 'YourApiEndpoint' with the actual API endpoint
     private string apiEndpoint = "YourApiEndpoint";
 
@@ -62,3 +106,10 @@
         public string Email { get; set; }
     }
 }
+=======
+
+
+
+
+
+>>>>>>> Stashed changes
