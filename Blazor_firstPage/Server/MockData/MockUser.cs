@@ -1,4 +1,4 @@
-﻿using Blazor_firstPage.Server.Model;
+﻿using Blazor_firstPage.Shared;
 
 namespace Blazor_firstPage.Server.MockData
 {

@@ -1,5 +1,5 @@
-﻿using Blazor_firstPage.Server.MockData;
-using Blazor_firstPage.Server.Model;
+﻿using Blazor_firstPage.Shared;
+using Blazor_firstPage.Server.MockData;
 
 namespace Blazor_firstPage.Server.Service.UserService
 {
@@ -9,7 +9,7 @@ namespace Blazor_firstPage.Server.Service.UserService
 
         public UserService() 
         {
-            Users = MockData.MockUser.GetMockUser();    
+            Users = MockUser.GetMockUser();    
             
         }
         public List<User> GetUsers()
