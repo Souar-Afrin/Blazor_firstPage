@@ -9,7 +9,8 @@ namespace Blazor_firstPage.Server.Controllers
     public class UserServiceController : ControllerBase
     {
         public List<User> Users { get; set; }
-        public UserService UserService { get; set; }
+        public UserService UserService { get; set; }   
+
 
         private readonly ILogger<UserServiceController> _logger;
 
@@ -18,7 +19,6 @@ namespace Blazor_firstPage.Server.Controllers
             this.UserService = userService;
             this._logger = _logger;
         }
-
         [HttpGet]
         public IActionResult OnGet()
         {
