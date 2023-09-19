@@ -9,8 +9,8 @@ namespace Blazor_firstPage.Server.Service.UserService
 
         public UserService() 
         {
-            Users = MockData.MockUser.GetMockUser();    
-            //Users = SQL_User.GetUsers().ToList();
+            //Users = MockData.MockUser.GetMockUser();    
+            Users = SQL_User.GetUsers().ToList();
             
         }
         public List<User> GetUsers()
